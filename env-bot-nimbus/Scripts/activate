@@ -38,7 +38,7 @@ deactivate () {
 # unset irrelevant variables
 deactivate nondestructive
 
-VIRTUAL_ENV="C:\Users\Michell\Documents\Proyectos\repos\Bots\bot-nimbus-rutas\env-bot-nimbus"
+VIRTUAL_ENV="C:\Users\Michel\Desktop\UNIVERSIDAD-MICHELL\Repos\bot-nimbus-rutas\env-bot-nimbus"
 export VIRTUAL_ENV
 
 _OLD_VIRTUAL_PATH="$PATH"

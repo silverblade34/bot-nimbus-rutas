@@ -8,27 +8,24 @@ class ResponseBot():
     def __init__(self):
         pass
 
-    def parsedConsumirNimbus(self, depot):
+    def parsedConsumirNimbus(self, depot, token,ruc_empresa):
         headers={
-            "Authorization":"Token a499a5d7a6594edb997f249ac8a366ea"
+            "Authorization":f"Token {token}"
             }
-        response = requests.get('https://nimbus.wialon.com/api/depot/8475/routes', headers=headers)
+        response = requests.get(f'https://nimbus.wialon.com/api/depot/{depot}/routes', headers=headers)
         raw = response.json()
         
         rutas = self.listaRutas(raw)
-        puntos = self.consumirPuntos()
-
-        puntosRuta = rutas[0]['puntosC']
+        puntos = self.consumirPuntos(depot,token)
         
         estructura = []
-
         contador =0
         while contador<len(rutas):
             enviarRuta = {}
             puntosRuta = rutas[contador]['puntosC']
             
             SM_RUC_PROVEEDOR = "1716024474001"
-            SM_RUC_EMPRESA= "1791054334001"
+            SM_RUC_EMPRESA= ruc_empresa
             SM_CODIGO_RUTA = rutas[contador]['nombre']
             SM_NOMBRE= rutas[contador]['nombre']
             SM_COORDENADAS = self.obtenerCoordenadas(puntos,puntosRuta)
@@ -58,30 +55,30 @@ class ResponseBot():
             listaRutas.append(rutas)
         return listaRutas
 
-    def consumirPuntos(self):
+    def consumirPuntos(self, depot, token):
 
         # puntosRuta = rutas[0]['puntosC']
         # coordenadas = []
         headers={
-            "Authorization":"Token a499a5d7a6594edb997f249ac8a366ea"
+            "Authorization":f"Token {token}"
             }
-        response = requests.get('https://nimbus.wialon.com/api/depot/8475/stops', headers=headers)
+        response = requests.get(f'https://nimbus.wialon.com/api/depot/{depot}/stops', headers=headers)
         raw = response.json()    
         puntos=raw['stops']        
         
         return puntos
 
-    def obtenerCoordenadas(self, puntos, puntosRuta):
-       
-        c=""
+    def obtenerCoordenadas(self, puntos, puntosRuta):    
+        coordenadas=""
         for p in puntos:
             #listaCoordenadas = []
             if p['id'] in puntosRuta:
                listcoord = p['p']
                for l in listcoord:
-                    c = "("+str(l['y'])+","+str(l['x'])+"),"+c       
+                    coordenadas = "("+str(l['y'])+","+str(l['x'])+"),"+coordenadas
+        coordenadas = coordenadas[:-1]      
             
-        return c
+        return coordenadas
 
 
 

@@ -5,6 +5,6 @@ class BotsRutasController():
         
         self.responseData = ResponseBot()
 
-    def controllerRutas(self, depot):
-        list = self.responseData.parsedConsumirNimbus(depot)
+    def controllerRutas(self, depot, token,ruc_empresa):
+        list = self.responseData.parsedConsumirNimbus(depot, token,ruc_empresa)
         return list

@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\Michell\Documents\Proyectos\repos\Bots\bot-nimbus-rutas\env-bot-nimbus
+set VIRTUAL_ENV=C:\Users\Michel\Desktop\UNIVERSIDAD-MICHELL\Repos\bot-nimbus-rutas\env-bot-nimbus
 
 if not defined PROMPT set PROMPT=$P$G
 
