@@ -80,5 +80,13 @@ class ResponseBot():
             
         return coordenadas
 
-
+    def parsedConsumirPuntos(self, depot, token):
+        headers={
+            "Authorization":f"Token {token}"
+            }
+        response = requests.get(f'https://nimbus.wialon.com/api/depot/{depot}/routes', headers=headers)
+        raw = response.json()
+        
+        rutas = self.listaRutas(raw)
+        return rutas
 
