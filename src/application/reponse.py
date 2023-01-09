@@ -120,7 +120,3 @@ class ResponseBot():
             elif(p['id']==puntofin):
                 names['fin']=p['n']
         return names
-    
-
-
-
